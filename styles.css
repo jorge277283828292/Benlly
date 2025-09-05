@@ -1,4 +1,4 @@
-:root {
+ :root {
   --bg-day-top:#b6e2ff;
   --bg-day-bottom:#ffffff;
   --bg-night-top:#0b0c2a;
@@ -9,12 +9,99 @@
 }
 
 * { box-sizing:border-box; }
-html, body { height:100%; margin:0; font-family: system-ui, sans-serif; overflow:hidden; }
+html, body {
+  height: 100%;
+  margin: 0;
+  font-family: system-ui, sans-serif;
+  overflow: auto; /* Cambiado de hidden a auto para permitir scroll */
+  width: 100%;
+}
 
 body {
-  color:#fff;
+  color: #fff;
   background: url('Arbol.png') center center/cover no-repeat fixed;
+  background-color: #000000; /* color de respaldo para evitar fondo negro visible */
   transition: background 600ms ease;
+  min-height: 100vh;
+  min-width: 100vw;
+}
+
+/* Para móviles, cambiar background-attachment fixed a scroll para evitar problemas */
+@media (max-width: 480px) {
+  body {
+    background-attachment: scroll !important;
+  }
+}
+
+/* Adaptación para móviles con medidas exactas 360x760 px */
+@media (max-width: 360px) and (max-height: 760px) {
+  html, body {
+    width: 360px !important;
+    height: 760px !important;
+    overflow: auto !important;
+  }
+
+  body {
+    background-size: cover !important;
+    background-position: center center !important;
+    background-repeat: no-repeat !important;
+    background-attachment: scroll !important;
+  }
+
+  .date-banner {
+    font-size: 24px !important;
+    top: 10px !important;
+  }
+
+  .time-counter {
+    font-size: 14px !important;
+    bottom: 10px !important;
+  }
+
+  .tree {
+    width: 180px !important;
+    height: 220px !important;
+    bottom: 8vh !important;
+    right: 4vw !important;
+  }
+
+  .start button {
+    font-size: 16px !important;
+    padding: 12px 16px !important;
+  }
+}
+
+/* Ajustes generales para pantallas pequeñas */
+@media (max-width: 480px) {
+  .date-banner {
+    font-size: 28px;
+  }
+
+  .time-counter {
+    font-size: 15px;
+  }
+
+  .tree {
+    width: 220px;
+    height: 260px;
+  }
+}
+
+/* Adaptación para móviles con medidas exactas 360x760 px */
+@media (max-width: 360px) and (max-height: 760px) {
+  body {
+    background-size: cover !important;
+    background-position: center center !important;
+    background-repeat: no-repeat !important;
+    background-attachment: scroll !important;
+    margin: 0;
+    padding: 0;
+    overflow: auto !important;
+    width: 100% !important;
+    height: 100% !important;
+    min-width: 360px !important;
+    min-height: 760px !important;
+  }
 }
 
 /* Oculta las capas de efectos antiguos */
