@@ -1,6 +1,7 @@
   // ===== Configuración de fecha =====
   const startDate = new Date('2024-06-05T00:00:00');
   const counterEl = document.getElementById('time');
+  const isMobile = window.innerWidth < 768; // Detectar móvil
   function updateCounter(){
     const now = new Date();
     const diff = now - startDate;
@@ -21,7 +22,8 @@
 
   function populateStars(){
     starsEl.innerHTML='';
-    for(let i=0;i<120;i++){
+    const starCount = isMobile ? 60 : 120; // Menos estrellas en móvil
+    for(let i=0;i<starCount;i++){
       const s=document.createElement('div'); s.className='star';
       s.style.left= (Math.random()*100)+'%';
       s.style.top= (Math.random()*100)+'%';
@@ -69,7 +71,7 @@
     document.body.appendChild(el);
     setTimeout(()=>el.remove(), 2200);
   }
-  document.addEventListener('click',(e)=>{
+  document.addEventListener('pointerdown',(e)=>{
     if(e.target.id==='startBtn') return;
     showPhrase(e.clientX, e.clientY);
     // primer clic también sirve para desbloquear audio:
@@ -81,7 +83,9 @@
     const p = document.createElement('div');
     p.className='petal';
     p.textContent='🌸';
-    p.style.left = (Math.random()*100)+'vw';
+    // Limitar el rango horizontal para evitar que las flores caigan fuera del viewport
+    const leftPercent = Math.random() * 90 + 5; // entre 5% y 95%
+    p.style.left = leftPercent + '%';
     p.style.fontSize = (16 + Math.random()*10) + 'px';
     p.style.animationDuration = (6+Math.random()*4)+'s';
     document.body.appendChild(p);
@@ -89,7 +93,7 @@
   }
   setInterval(()=>{
     // ráfaga variable: a veces 0, a veces muchos
-    const amount = Math.floor(Math.random()*6); // 0..5
+    const amount = isMobile ? Math.floor(Math.random()*3) : Math.floor(Math.random()*6); // Menos pétalos en móvil
     for(let i=0;i<amount;i++) setTimeout(spawnPetal, i*120);
   }, 650);
 

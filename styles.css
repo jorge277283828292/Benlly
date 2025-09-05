@@ -1,4 +1,4 @@
- :root {
+:root {
   --bg-day-top:#b6e2ff;
   --bg-day-bottom:#ffffff;
   --bg-night-top:#0b0c2a;
@@ -146,8 +146,35 @@ body {
 }
 @keyframes floatUp {0%{transform:translate(-50%,-50%) scale(.9);opacity:1}100%{transform:translate(-50%,-140%) scale(1);opacity:0}}
 
-.petal{position:absolute; top:-5vh; font-size:18px; animation:fall 7s linear forwards; pointer-events:none;}
-@keyframes fall{0%{transform:translateY(0) translateX(0) rotate(0)}50%{transform:translateY(50vh) translateX(12vw) rotate(180deg)}100%{transform:translateY(110vh) translateX(25vw) rotate(360deg);opacity:0}}
+.petal {
+  position: fixed; /* Cambiado de absolute a fixed para evitar que afecte el flujo y cause desplazamiento */
+  top: -5vh;
+  font-size: 18px;
+  animation: fall 7s linear forwards;
+  pointer-events: none;
+  will-change: transform;
+  left: 0; /* Inicializar left para evitar desplazamientos inesperados */
+  right: 0;
+  margin: 0 auto;
+  width: fit-content;
+  max-width: 100vw;
+  overflow: visible;
+  pointer-events: none;
+  user-select: none;
+  z-index: 9999; /* Asegurar que las flores estén sobre otros elementos */
+}
+@keyframes fall {
+  0% {
+    transform: translateY(0) rotate(0);
+  }
+  50% {
+    transform: translateY(50vh) rotate(180deg);
+  }
+  100% {
+    transform: translateY(110vh) rotate(360deg);
+    opacity: 0;
+  }
+}
 
 .tree{position:absolute; right:4vw; bottom:12vh; width:260px; height:320px; z-index:5; transform-origin:bottom right; animation:sway 4.5s ease-in-out infinite}
 @keyframes sway{0%,100%{transform:rotate(-1.2deg)}50%{transform:rotate(1.6deg)}}
@@ -156,3 +183,64 @@ body {
 .start{position:absolute; inset:0; background:#000b; display:flex; align-items:center; justify-content:center; z-index:20;}
 .start button{font:700 18px system-ui,sans-serif;padding:14px 18px;border-radius:14px;border:none;color:#1a1a40;background:#ffecf6;cursor:pointer;box-shadow:0 12px 30px #0006}
 .start button:active{transform: translateY(1px);}
+
+/* Nuevas media queries para mejor responsividad en móviles */
+@media (max-width: 768px) {
+  .date-banner {
+    font-size: clamp(24px, 5vw, 40px);
+    top: 20px;
+  }
+
+  .time-counter {
+    font-size: 14px;
+    bottom: 20px;
+    padding: 8px 12px;
+  }
+
+  .sun, .moon {
+    width: 48px;
+    height: 48px;
+  }
+
+  .tree {
+    width: 200px;
+    height: 240px;
+    right: 2vw;
+    bottom: 10vh;
+  }
+
+  .start button {
+    font-size: 16px;
+    padding: 12px 16px;
+  }
+}
+
+@media (max-width: 480px) {
+  .date-banner {
+    font-size: clamp(20px, 4vw, 32px);
+    top: 15px;
+  }
+
+  .time-counter {
+    font-size: 12px;
+    bottom: 15px;
+    padding: 6px 10px;
+  }
+
+  .sun, .moon {
+    width: 40px;
+    height: 40px;
+  }
+
+  .tree {
+    width: 150px;
+    height: 180px;
+    right: 1vw;
+    bottom: 8vh;
+  }
+
+  .start button {
+    font-size: 14px;
+    padding: 10px 14px;
+  }
+}
