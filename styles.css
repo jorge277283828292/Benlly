@@ -29,6 +29,10 @@ body {
 /* Para móviles, cambiar background-attachment fixed a scroll para evitar problemas */
 @media (max-width: 480px) {
   body {
+    background-image: url('Arbol_Celular.jpg') !important;
+    background-size: cover !important;
+    background-position: center center !important;
+    background-repeat: no-repeat !important;
     background-attachment: scroll !important;
   }
 }
