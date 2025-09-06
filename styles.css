@@ -158,10 +158,7 @@ body {
   pointer-events: none;
   will-change: transform;
   left: 0; /* Inicializar left para evitar desplazamientos inesperados */
-  right: 0;
-  margin: 0 auto;
-  width: fit-content;
-  max-width: 100vw;
+  /* Eliminado right, margin y max-width para permitir distribución completa */
   overflow: visible;
   pointer-events: none;
   user-select: none;

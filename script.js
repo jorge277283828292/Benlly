@@ -83,8 +83,8 @@
     const p = document.createElement('div');
     p.className='petal';
     p.textContent='🌸';
-    // Limitar el rango horizontal para evitar que las flores caigan fuera del viewport
-    const leftPercent = Math.random() * 90 + 5; // entre 5% y 95%
+    // Cambiado para que las flores caigan por toda la pantalla (0% a 100%)
+    const leftPercent = Math.random() * 100; // entre 0% y 100%
     p.style.left = leftPercent + '%';
     p.style.fontSize = (16 + Math.random()*10) + 'px';
     p.style.animationDuration = (6+Math.random()*4)+'s';
