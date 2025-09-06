@@ -1,8 +1,10 @@
+document.addEventListener('DOMContentLoaded', () => {
   // ===== Configuración de fecha =====
   const startDate = new Date('2024-06-05T00:00:00');
   const counterEl = document.getElementById('time');
   const isMobile = window.innerWidth < 768; // Detectar móvil
   function updateCounter(){
+    console.log("Actualizando contador"); // Log para verificar ejecución
     const now = new Date();
     const diff = now - startDate;
     const s = Math.floor(diff/1000)%60;
@@ -14,6 +16,11 @@
     const pad = n => String(n).padStart(2,'0');
     counterEl.textContent = `${y} años, ${rd} días, ${pad(h)}h ${pad(m)}m ${pad(s)}s`;
   }
+  updateCounter();
+  setInterval(() => {
+    console.log("Intervalo ejecutado"); // Log para verificar ejecución repetida
+    updateCounter();
+  }, 1000);
 
   // ===== Cielo día/noche =====
   const starsEl = document.getElementById('stars');
@@ -151,4 +158,4 @@
   // Kick
   updateCounter(); updateSky();
   setInterval(updateCounter, 1000);
-  setInterval(updateSky, 60000);
+  setInterval(updateSky, 60000);});
